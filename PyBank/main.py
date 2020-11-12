@@ -14,31 +14,57 @@
 import os
 import csv 
 #Path to collect data from the Resources folder
-budget_data_csv = os.path.join("./Resources/budget_data.csv")
-with open(budget_data_csv, encoding = "utf-8") as csvfile:
+budget_data_csv = os.path.join("./Resources/budget_data_full.csv")
+#Read in the CSV file
+with open(budget_data_csv, 'r', encoding = "utf-8") as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
-
-    num_months = 0
+    csvheader = next(csvreader)
+#Define the variables that will be used in the calculuations
+    total_months = 0
+    net_total = 0
+    profit_losses_values = 0
+    prev_rev = 0
+    rev_change = 0
+    rev_average = 0
+    rev_change_list = []
+    net_total_list = []
+    greatest_increase = []
+    greatest_decrease = []
+    profit_losses = []
+    profit_losses_list = []
+    #Loop through the data
     for row in csvreader:
-        date = row[0]
-        Profits_Losses = row[1]
+      #Calculate the total number of months included in the dataset 
+      date = row[0]
+      total_months += 1
+      #Calculate the net total amount of "Profit/Losses" over the entire period
+      profit_loss = int(row[1])
+      net_total = net_total + profit_loss
+      net_total_list.append(net_total)
+      #Calculate the changes in "Profit/Losses" over the entire period
+    for row in csvreader:
+      profit_losses = int(row[1])
+      #profit_losses_values = profit_losses_values + profit_losses
+      #if profit_losses_values not in profit_losses_list:
+      #  profit_losses_list.append(profit_losses_values)
+      #rev_change = profit_losses - prev_rev
+      #rev_change_list.append(rev_change)
+      #prev_rev = profit_losses
       
-        for date in csvreader:
-            num_months += 1
-            print(num_months)
+      #Find the average of those changes
+      #rev_average = sum(rev_change_list) / total_months
+
+    #Calculate the greatest increase in profits (date and amount) over the entire period
+    #greatest_increase = max()
+    #Calculate the greatest decrease in losses (date and amount) over the entire period
+    #greatest_decrease = min()
+print("Financial Analysis")
+print("----------------------------------------------------")      
+print(f"Total Months: {total_months}")
+print(f"Total: ${net_total}")
+print(f"{profit_losses}")
+#print(rev_average)
+#print(greatest_increase)
+#print(greatest_decrease)
 
 
-#(Print CSV reader to check formatting)
-  #  print(csvreader)
-  #  csv_header = next(csvreader)
-  #  print(f'CSV Header: {csv_header}')
-    
-    #for months in csvreader:
-      #  num_months += 1
-      #  print(num_months)
-
-#Define the function and have it accept the 'budget_data' as its sole parameter
-#def budget_calculations (budget_data):
-#define variables that will be used in the formulas
-
-#Calculate the total number of months included in the dataset 
