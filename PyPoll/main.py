@@ -3,7 +3,7 @@ import os
 import csv
 
 #Path to collect data from the Resources folder
-election_data = os.path.join(".\Resources\election_data_full.csv")
+election_data = os.path.join(".\Resources\election_data.csv")
 
 #Read in the CSV file
 with open(election_data, 'r', encoding = "utf-8") as csvfile:
