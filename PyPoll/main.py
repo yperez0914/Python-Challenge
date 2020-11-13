@@ -16,9 +16,8 @@
 
 import os
 import csv
-import math
 #Path to collect data from the Resources folder
-election_data = os.path.join(".\Resources\election_data.csv")
+election_data = os.path.join(".\Resources\election_data_full.csv")
 #with open(election_data, encoding = "utf-8") as csvfile:
   #  csvreader = csv.reader(csvfile, delimiter = ",")
 #The total number of votes cast in the dataset
@@ -26,20 +25,18 @@ with open(election_data, 'r', encoding = "utf-8") as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
     csvheader = next(csvreader)
     total_votes = 0
-    Kahn_votes = 0
-    Correy_votes = 0
-    Li_votes = 0
-    O_Tooley_votes = 0
+    possible_winner = 0
+    winner_votes = 0
     candidates = []
     votes = []
+    candidate_votes = 0
     total_votes_list = []
-    election_results = []
-    Kahn_percentage = []
     for row in csvreader:
         voter_id = row[0]
         county = row[1]
         candidate = row[2]
         votes.append(candidate)
+#A complete list of candidates who received votes
         if candidate not in candidates:
             candidates.append(candidate)
         
@@ -47,7 +44,7 @@ with open(election_data, 'r', encoding = "utf-8") as csvfile:
 
     print("Election Results")
     print("--------------------------------------------------")
-    print(total_votes)
+    print(F"Total Votes: {total_votes}")
     print("--------------------------------------------------")
     for candidate in candidates:
         count = 0
@@ -55,40 +52,40 @@ with open(election_data, 'r', encoding = "utf-8") as csvfile:
             if candidate == vote:
                 count = count + 1
         total_votes_list.append(count)
-        print(candidate,count)
-
-
-
-#complete list of candidates 
-    
-    for x in candidate:
-        if x not in candidates:
-            candidates.append(x)
-            #election_results = candidates + str(count)
-            #print(election_results)
-    #print(candidates)
- 
+        
  #The percentage of votes each candidate won
-    Kahn_percentage = (total_votes_list[0]/total_votes) * 100
-    #Kahn_percentage_format = math.trunc(Kahn_percentage, 3)
-    Correy_percentage = (total_votes_list[1]/total_votes) * 100
-    Li_percentage = (total_votes_list[2]/total_votes) * 100
-    O_Tooley_percentage = (total_votes_list[3]/total_votes) * 100
-    #print(f"Kahn: {Kahn_percentage_format}% ({total_votes_list[0]})")
-    #print(f"Correy: {Correy_percentage} ({Correy_votes})")
-    #print(f"Li: {Li_percentage} ({Li_votes})")
-    #print(f"O'Tooley: {O_Tooley_percentage} ({O_Tooley__votes})")
-    #print("--------------------------------------------------")
+    Kahn_percentage = round(((total_votes_list[0]/total_votes) * 100),2)
+    Kahn_percentage_format = format((Kahn_percentage), '.3f')
+    Correy_percentage = round(((total_votes_list[1]/total_votes) * 100),2)
+    Correy_percentage_format = format((Correy_percentage), '.3f')
+    Li_percentage = round(((total_votes_list[2]/total_votes) * 100),2)
+    Li_percentage_format = format((Li_percentage), '.3f')
+    O_Tooley_percentage = round(((total_votes_list[3]/total_votes) * 100),2)
+    O_Tooley_percentage_format = format((O_Tooley_percentage), '.3f')
+   
+    print(f"{candidates[0]}: {Kahn_percentage_format}% ({total_votes_list[0]})")
+    print(f"{candidates[1]}: {Correy_percentage_format}% ({total_votes_list[1]})")
+    print(f"{candidates[2]}: {Li_percentage_format}% ({total_votes_list[2]})")
+    print(f"{candidates[3]}: {O_Tooley_percentage}% ({total_votes_list[3]})")
+    print("--------------------------------------------------")
 #The winner of the election based on popular vote
-#election_results ={
-#   Kahn: "",
-#   Correy: "",
-#   Li: "",
-#   O'Tolley: "",
-# }
-#election_winner = max(election_results, key=election_results.get)
-print("-------------------------------------------------")
-#print(f"Winner: {election_winner}")
+    #for candidate_votes in total_votes_list:    
+        #Kahn_votes = total_votes_list[0]
+        #if Kahn_votes > possible_winner:
+            #possible_winner = Kahn_votes
+            #if Correy_votes > Kahn_votes:
+               # possible_winner = Correy_votes
+    #print(f"{Kahn_votes}")
+
+election_results ={
+    "Kahn": total_votes_list[0],
+    "Correy": total_votes_list[1],
+    "Li": total_votes_list[2],
+    "O'Tolley": total_votes_list[3],
+ }
+election_winner = max(election_results, key=election_results.get)
+print(f"Winner: {election_winner}")
+print("--------------------------------------------------")
         
 
 
