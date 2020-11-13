@@ -1,15 +1,3 @@
-'''* Your task is to create a Python script that analyzes the records to calculate each of the following:
-
-  * The total number of months included in the dataset
-
-  * The net total amount of "Profit/Losses" over the entire period
-
-  * Calculate the changes in "Profit/Losses" over the entire period, then find the average of those changes
-
-  * The greatest increase in profits (date and amount) over the entire period
-
-  * The greatest decrease in losses (date and amount) over the entire period
-'''
 #Import Modules
 import os
 import csv 
@@ -43,7 +31,7 @@ with open(budget_data_csv, 'r', encoding = "utf-8") as csvfile:
       profit_loss = int(row[1])
       net_total = net_total + profit_loss
       
-      #Calculate the changes in "Profit/Losses" over the entire period
+      #Calculate the changes in "Profit/Losses" over the entire period & count the number of changes
       rev_change = profit_loss - prev_rev
       num_changes += 1
       prev_rev = profit_loss
@@ -56,7 +44,7 @@ with open(budget_data_csv, 'r', encoding = "utf-8") as csvfile:
       if rev_change >= greatest_increase:
         date_increase = date
         greatest_increase = rev_change
-      greatest_increase_format = "${}".format(greatest_increase)
+        greatest_increase_format = "${}".format(greatest_increase)
       #Calculate the greatest decrease in losses (date and amount) over the entire period
       if rev_change < greatest_decrease:
         date_decrease = date
