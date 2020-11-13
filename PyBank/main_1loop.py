@@ -26,6 +26,7 @@ with open(budget_data_csv, 'r', encoding = "utf-8") as csvfile:
     rev_change = 0
     rev_average = 0
     rev_change_total = 0
+    num_changes = 0
     greatest_increase = 0
     greatest_decrease = 0
     firstrow = next(csvreader)
@@ -44,28 +45,31 @@ with open(budget_data_csv, 'r', encoding = "utf-8") as csvfile:
       
       #Calculate the changes in "Profit/Losses" over the entire period
       rev_change = profit_loss - prev_rev
+      num_changes += 1
       prev_rev = profit_loss
 
       #Find the average of those changes
       rev_change_total += rev_change
-      rev_average = round((rev_change_total/ total_months),2)
-    
+      rev_average = round((rev_change_total/num_changes),2)
+      
       #Calculate the greatest increase & in profits (date and amount) over the entire period
       if rev_change >= greatest_increase:
+        date_increase = date
         greatest_increase = rev_change
-
+      greatest_increase_format = "${}".format(greatest_increase)
       #Calculate the greatest decrease in losses (date and amount) over the entire period
       if rev_change < greatest_decrease:
-        greatest_decrease = date
+        date_decrease = date
         greatest_decrease = rev_change
+        greatest_decrease_format = "${}".format(greatest_decrease)
                 
 print("Financial Analysis")
 print("----------------------------------------------------")      
 print(f"Total Months: {total_months}")
 print(f"Total: ${net_total}")
-print(f"Average Change: {rev_average}")
-print(f"Greatest Increase in Profits: {date} $({greatest_increase})")
-print(f"Greatest Decrease in Profits: {date} $({greatest_decrease})")
+print(f"Average Change: ${rev_average}")
+print(f"Greatest Increase in Profits: {date_increase} ({greatest_increase_format})")
+print(f"Greatest Decrease in Profits: {date_decrease} ({greatest_decrease_format})")
 print("-----------------------------------------------------")
 
 
