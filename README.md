@@ -16,7 +16,7 @@ In PyPoll, I created a Python script to analyze election results for a small tow
 The Python script, CSV file, and results(text output) file can be found below:<br>
 + [PyPoll Python Script](https://github.com/yperez0914/Python-Challenge/blob/main/PyPoll/main.py)
 + [Analysis: PyPoll Results](https://github.com/yperez0914/Python-Challenge/tree/main/PyPoll/Analysis)
-+ [Resources: PyPoll Election Data](https://raw.githubusercontent.com/yperez0914/Python-Challenge/main/PyPoll/Resources/election_data.csv)
++ [Resources: PyPoll Election Data](https://raw.githubusercontent.com/yperez0914/Python-Challenge/main/PyPoll/Resources/election_data.csv) <br>
 
 
 
