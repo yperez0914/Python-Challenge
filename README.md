@@ -3,7 +3,6 @@ This project was composed of 2 parts that showcased my Python coding skills: PyB
 <br>
 Part 1: PyBank <br>
 In PyBank, I created a Python script to analyze the financial records of a company. In order to do this I imported modules, read a CSV file, and used a for loop with conditionals to perform a series of calculations to print the results in proper format for the total number of months, net total amount of "Profit/Losses", changes in "Profit/Losses", average change, greatest increase in profits, and greatest decrease in profits over the entire period. <br>
-<br>
 The Python script, CSV file, and results (text output) file can be found below:<br>
 [PyBank Python Script](https://github.com/yperez0914/Python-Challenge/blob/main/PyBank/main.py) <br>
 [Analysis: PyBank Results](https://github.com/yperez0914/Python-Challenge/tree/main/PyBank/Analysis) <br>
